@@ -7,7 +7,7 @@ class general{
     }
   
     package { 
-      [ "vim", "git-core", "python", "python-setuptools", "python-dev", "python-pip", "build-essential"]:
+      [ "vim", "git-core", "python", "python-setuptools", "python-dev", "python-pip", "build-essential", "libevent-dev"]:
         ensure => ["installed"],
         require => Exec['apt-update']    
     }
@@ -27,6 +27,12 @@ class general{
     exec {
       "screen":
       command => "/usr/bin/sudo apt-get install screen",
+      require => Exec['apt-update']  
+    }
+
+    exec {
+      "fabric":
+      command => "/usr/bin/sudo apt-get install fabric",
       require => Exec['apt-update']  
     }
    
